@@ -1,11 +1,21 @@
 <?php
 class Company extends Common {
 
+  /**
+   * To get the active companies with the input company-name
+   *
+   * @param String - $name -> Name of the company
+   * @return Array -> company info
+   */
 	public function getCompanyData($name){
 		$q = DB::mquery("select * from company where company_name='$name' and status=1");
 		return DB::fetch($q);
 	}
-	
+
+  /**
+   * To add company after full validation
+   *
+   */	
 	public function add_Company(){
 		$name = clean(Input::fetch('company_name'));
 		$location = clean(Input::fetch('location'));
@@ -30,11 +40,22 @@ class Company extends Common {
 		}
 	}
 	
+  /**
+   * To get all active companies
+   *
+   * @return Array -> All companies info
+   */	
 	public function getAllCompanies(){
 		$q = DB::mquery("select * from company where status=1");
 		return DB::fetchAll($q);
 	}
 	
+  /**
+   * To validate by company-id
+   *
+   * @param Int - $company_id -> Id of the company
+   * @return Array -> company info
+   */	
 	public static function validateCompanyById($company_id){
 		$company_id = (int)$company_id;
 		$q = DB::mquery("select * from company where company_id=$company_id and status=1");
@@ -47,6 +68,11 @@ class Company extends Common {
 		}
 	}
 	
+  /**
+   * To get the output of report-3
+   *
+   * @return Array -> Report
+   */	
 	public function getReport3(){
 		$q = DB::mquery("select b.company_name,c.exchange_name,a.* from stocks as a 
 		inner join company as b on a.company_id=b.company_id 
