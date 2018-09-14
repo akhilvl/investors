@@ -1,4 +1,13 @@
 <?php
+/**
+ * Company -> To manipulate with company information
+ * 
+ * 
+ * @package    Company
+ * @subpackage Common
+ * @author     Akhil
+ */
+   
 class Company extends Common {
 
   /**
